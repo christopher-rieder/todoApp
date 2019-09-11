@@ -1,9 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import TodoBoard from './TodoBoard/TodoBoard';
 
 function App () {
   return (
-    <h1>Hello World!</h1>
+    <TodoBoard />
   );
 }
 

@@ -10,8 +10,8 @@ import todoBoardReducer from './TodoBoard/Reducer';
 
 // const logger = createLogger();
 const rootReducer = combineReducers({
-  todoCreatorReducer: todoCreatorReducer,
-  todoBoardReducer: todoBoardReducer
+  todoCreator: todoCreatorReducer,
+  todoBoard: todoBoardReducer
 });
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

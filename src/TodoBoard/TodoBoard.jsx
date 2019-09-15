@@ -29,9 +29,32 @@ function TodoBoard ({todos, statuses, dispatch}) {
 
   return (
     <div className='todoBoard'>
-      <TodoCardList todoListStyle={TODO_UI_STYLE} title={TODO} todos={todos.filter(todo => todo.status === TODO)} />
-      <TodoCardList todoListStyle={INPROGRESS_UI_STYLE} title={INPROGRESS} todos={todos.filter(todo => todo.status === INPROGRESS)} />
-      <TodoCardList todoListStyle={DONE_UI_STYLE} title={DONE} todos={todos.filter(todo => todo.status === DONE)} />
+      <TodoCardList title={TODO} >
+        {todos.filter(todo => todo.status === TODO)
+          .map((todo, i) =>
+            <TodoCardItem todoListStyle={TODO_UI_STYLE} todo={todo} key={todo.title + i} >
+              <InProgressButton />
+              <DeleteButton />
+            </TodoCardItem>)
+        }
+      </TodoCardList>
+      <TodoCardList title={INPROGRESS} >
+        {todos.filter(todo => todo.status === INPROGRESS)
+          .map((todo, i) =>
+            <TodoCardItem todoListStyle={INPROGRESS_UI_STYLE} todo={todo} key={todo.title + i} >
+              <DoneButton />
+              <DeleteButton />
+            </TodoCardItem>)
+        }
+      </TodoCardList>
+      <TodoCardList title={DONE} >
+        {todos.filter(todo => todo.status === DONE)
+          .map((todo, i) =>
+            <TodoCardItem todoListStyle={DONE_UI_STYLE} todo={todo} key={todo.title + i} >
+              <DeleteButton />
+            </TodoCardItem>)
+        }
+      </TodoCardList>
     </div>
   );
 }

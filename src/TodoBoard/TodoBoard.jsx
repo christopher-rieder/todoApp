@@ -3,12 +3,14 @@
 // the second column is projects in progress (in progress...)
 // and the third column is projects completed (done...)
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import TodoCardList from './TodoCardList';
 import TodoCardItem from './TodoCardItem';
+import TodoCreator from '../TodoCreator/TodoCreator';
 import {requestTodos, changeTodoStatus} from './Actions';
 import {EditButton, DeleteButton, DoneButton, InProgressButton, FabAddButton} from '../SmallComponents/Buttons';
+import Modal from '../SmallComponents/Modal';
 
 // string literals defined for using in css style file
 const TODO_UI_STYLE = 'todo';
@@ -22,6 +24,7 @@ const mapStateToProps = state => ({
 
 function TodoBoard ({todos, statuses, dispatch}) {
   const [TODO, INPROGRESS, DONE, DELETED] = statuses;
+  const [displayModal, setDisplayModal] = useState(false);
 
   useEffect(() => {
     dispatch(requestTodos());
@@ -29,6 +32,11 @@ function TodoBoard ({todos, statuses, dispatch}) {
 
   return (
     <div className='todoBoard'>
+      {
+        displayModal && <Modal displayModal={displayModal} setDisplayModal={setDisplayModal}>
+          {<TodoCreator />}
+        </Modal>
+      }
       <TodoCardList title={TODO} >
         {todos.filter(todo => todo.status === TODO)
           .map((todo, i) =>
@@ -57,7 +65,7 @@ function TodoBoard ({todos, statuses, dispatch}) {
             </TodoCardItem>)
         }
       </TodoCardList>
-      <FabAddButton />
+      <FabAddButton onClick={() => setDisplayModal(true)} />
     </div>
   );
 }

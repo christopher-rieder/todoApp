@@ -38,7 +38,7 @@ const data = [
     author: {name: 'Christopher Rieder'},
     title: 'nota5',
     description: 'Further complications, as if any were wanted, came from the fact that the systems had to be fault tolerant. If one of them got bashed by a hurtling piece of moon shrapnel and began to leak, it needed to be isolated from the rest of the system before too much of the precious water, or ammonia, leaked into space. So, the system as a whole possessed vast hierarchies of check valves, crossover switches, and redundancies that had saturated even Ivy’s brain, normally an infinite sink for detail. She’d had to delegate all cooling-related matters to a working group that was about three-quarters Russian and one-quarter American. The majority of all space walk activity was related to the expansion and maintenance of the cooling system and, uncharacteristically for her, she was content just to get a report on it once a day.',
-    status: 'In Progress...',
+    status: 'In Progress',
     tags: ['Seveneves', 'complications', 'blue']
   },
   {
@@ -46,7 +46,7 @@ const data = [
     author: {name: 'Christopher Rieder'},
     title: 'nota6',
     description: 'The backlash had started in a two-triad bolo where a number of like-minded Arkies, including Aïda, had “called bullshit” on the prevailing tone and substance of official statements emanating from the White Arklet and begun to denounce Tavistock Prowse as a puppet blogger for the regime. Dubbing themselves the “Black Bolo Brigade,” they had begun to spread their insurrectionist message to other arklets in the Swarm.',
-    status: 'In Progress...',
+    status: 'In Progress',
     tags: ['Seveneves', 'backlash', 'green']
   },
   {

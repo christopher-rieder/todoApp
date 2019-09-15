@@ -17,7 +17,7 @@ const DONE_UI_STYLE = 'done';
 
 const mapStateToProps = state => ({
   todos: state.todoBoard.todos,
-  statuses: ['To Do', 'In Progress...', 'Done', 'Deleted'] // TODO: this needs to be adquired from the backend service
+  statuses: ['To Do', 'In Progress', 'Done', 'Deleted'] // TODO: this needs to be adquired from the backend service
 });
 
 function TodoBoard ({todos, statuses, dispatch}) {

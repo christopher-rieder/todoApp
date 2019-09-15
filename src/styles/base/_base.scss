@@ -1,0 +1,19 @@
+// reset
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+::selection {
+  background-color: $color-primary;
+  color: whitesmoke;
+}
+
+#root {
+  margin: 0 auto;
+  width: 75vw;
+  min-width: 48rem;
+}

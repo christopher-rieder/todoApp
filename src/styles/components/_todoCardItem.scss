@@ -1,8 +1,9 @@
 .todoCardItem {
   padding: 0.5rem;
+  margin: 1rem auto;
+  max-width: $card-width;
   border-radius: 4px;
   border: 1px solid #eee;
-  margin-bottom: 1.5rem;
   box-shadow: 1px 1px 10px rgba(#222, .35);
 
   &__title {

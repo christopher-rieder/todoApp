@@ -18,3 +18,29 @@
 .doneButton:hover {fill: green;}
 .inProgressButton:hover {fill: goldenrod;}
 .editButton:hover {fill: salmon;}
+
+.fabAddButton {
+  background-color: $color-primary;
+  position: fixed;
+  display: flex;
+  align-items: center;
+  bottom: 5%;
+  right: 20%;
+  padding: 10px 20px 10px 10px;
+  border-radius: 100px;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: whitesmoke;
+  fill: whitesmoke;
+  user-select: none;
+  cursor: pointer;
+  opacity: 1;
+  transition: all .2s;
+  box-shadow: 1px 1px 10px rgba(#222, .35);
+}
+
+.fabAddButton:hover {
+  background-color: $color-primary-dark;
+  transform: scale(1.025);
+  box-shadow: 2px 2px 20px rgba(#222, .55);
+}

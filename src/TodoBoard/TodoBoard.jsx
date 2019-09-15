@@ -8,7 +8,7 @@ import { connect } from 'react-redux';
 import TodoCardList from './TodoCardList';
 import TodoCardItem from './TodoCardItem';
 import {requestTodos, changeTodoStatus} from './Actions';
-import {EditButton, DeleteButton, DoneButton, InProgressButton} from '../SmallComponents/Buttons';
+import {EditButton, DeleteButton, DoneButton, InProgressButton, FabAddButton} from '../SmallComponents/Buttons';
 
 // string literals defined for using in css style file
 const TODO_UI_STYLE = 'todo';
@@ -57,6 +57,7 @@ function TodoBoard ({todos, statuses, dispatch}) {
             </TodoCardItem>)
         }
       </TodoCardList>
+      <FabAddButton />
     </div>
   );
 }

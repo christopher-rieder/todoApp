@@ -8,6 +8,11 @@ import { connect } from 'react-redux';
 import TodoCardList from './TodoCardList';
 import {requestTodos} from './Actions';
 
+// string literals defined for using in css style file
+const TODO_UI_STYLE = 'todo';
+const INPROGRESS_UI_STYLE = 'inprogress';
+const DONE_UI_STYLE = 'done';
+
 const mapStateToProps = state => ({
   todos: state.todoBoard.todos,
   statuses: ['To Do', 'In Progress...', 'Done'] // TODO: this needs to be adquired from the backend service
@@ -22,9 +27,9 @@ function TodoBoard ({todos, statuses, dispatch}) {
 
   return (
     <div className='todoBoard'>
-      <TodoCardList title={TODO} todos={todos.filter(todo => todo.status === TODO)} />
-      <TodoCardList title={INPROGRESS} todos={todos.filter(todo => todo.status === INPROGRESS)} />
-      <TodoCardList title={DONE} todos={todos.filter(todo => todo.status === DONE)} />
+      <TodoCardList todoListStyle={TODO_UI_STYLE} title={TODO} todos={todos.filter(todo => todo.status === TODO)} />
+      <TodoCardList todoListStyle={INPROGRESS_UI_STYLE} title={INPROGRESS} todos={todos.filter(todo => todo.status === INPROGRESS)} />
+      <TodoCardList todoListStyle={DONE_UI_STYLE} title={DONE} todos={todos.filter(todo => todo.status === DONE)} />
     </div>
   );
 }

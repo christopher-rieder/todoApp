@@ -7,7 +7,7 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import TodoCardList from './TodoCardList';
 import TodoCardItem from './TodoCardItem';
-import {requestTodos} from './Actions';
+import {requestTodos, changeTodoStatus} from './Actions';
 import {EditButton, DeleteButton, DoneButton, InProgressButton} from '../SmallComponents/Buttons';
 
 // string literals defined for using in css style file
@@ -17,11 +17,11 @@ const DONE_UI_STYLE = 'done';
 
 const mapStateToProps = state => ({
   todos: state.todoBoard.todos,
-  statuses: ['To Do', 'In Progress...', 'Done'] // TODO: this needs to be adquired from the backend service
+  statuses: ['To Do', 'In Progress...', 'Done', 'Deleted'] // TODO: this needs to be adquired from the backend service
 });
 
 function TodoBoard ({todos, statuses, dispatch}) {
-  const [TODO, INPROGRESS, DONE] = statuses;
+  const [TODO, INPROGRESS, DONE, DELETED] = statuses;
 
   useEffect(() => {
     dispatch(requestTodos());
@@ -34,8 +34,8 @@ function TodoBoard ({todos, statuses, dispatch}) {
           .map((todo, i) =>
             <TodoCardItem todoListStyle={TODO_UI_STYLE} todo={todo} key={todo.title + i} >
               <EditButton />
-              <InProgressButton />
-              <DeleteButton />
+              <InProgressButton onClick={() => dispatch(changeTodoStatus(todo.id, INPROGRESS))} />
+              <DeleteButton onClick={() => dispatch(changeTodoStatus(todo.id, DELETED))} />
             </TodoCardItem>)
         }
       </TodoCardList>
@@ -44,8 +44,8 @@ function TodoBoard ({todos, statuses, dispatch}) {
           .map((todo, i) =>
             <TodoCardItem todoListStyle={INPROGRESS_UI_STYLE} todo={todo} key={todo.title + i} >
               <EditButton />
-              <DoneButton />
-              <DeleteButton />
+              <DoneButton onClick={() => dispatch(changeTodoStatus(todo.id, DONE))} />
+              <DeleteButton onClick={() => dispatch(changeTodoStatus(todo.id, DELETED))} />
             </TodoCardItem>)
         }
       </TodoCardList>
@@ -53,7 +53,7 @@ function TodoBoard ({todos, statuses, dispatch}) {
         {todos.filter(todo => todo.status === DONE)
           .map((todo, i) =>
             <TodoCardItem todoListStyle={DONE_UI_STYLE} todo={todo} key={todo.title + i} >
-              <DeleteButton />
+              <DeleteButton onClick={() => dispatch(changeTodoStatus(todo.id, DELETED))} />
             </TodoCardItem>)
         }
       </TodoCardList>

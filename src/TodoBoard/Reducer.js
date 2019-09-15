@@ -1,7 +1,8 @@
 import {
   REQUEST_TODOS_PENDING,
   REQUEST_TODOS_SUCCESS,
-  REQUEST_TODOS_FAILED
+  REQUEST_TODOS_FAILED,
+  CHANGE_TODO_STATUS
 } from './Actions';
 
 const initialState = {
@@ -18,6 +19,9 @@ const reducer = (state = initialState, action) => {
       return { ...state, todos: action.payload, todosPending: false };
     case REQUEST_TODOS_FAILED:
       return { ...state, todosError: action.payload, todosPending: false };
+    case CHANGE_TODO_STATUS:
+      return {...state,
+        todos: state.todos.map(todo => todo.id === action.id ? {...todo, status: action.status} : todo)};
     default: return state;
   }
 };

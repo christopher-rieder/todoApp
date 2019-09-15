@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default (props) => {
+export default function Modal (props) {
   const onClick = event => {
     if (event.target.id === 'modal') {
       props.setDisplayModal(false);
@@ -14,4 +14,4 @@ export default (props) => {
       </div>
     </div>
   );
-};
+}

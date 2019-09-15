@@ -25,4 +25,9 @@
   &__done{
     background-color: #C8E6C9 // green-100
   }
+  
+  &__buttons {
+    display: flex;
+    justify-content: flex-end;
+  }
 }

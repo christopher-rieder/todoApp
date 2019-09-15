@@ -7,7 +7,9 @@ function TodoCardItem ({todo, todoListStyle, children}) {
       <p className='todoCardItem__description'>{todo.description}</p>
       <p className='todoCardItem__author'>{todo.author.name}</p>
       <p className='todoCardItem__tags'>{todo.tags.join(', ')}</p>
-      {children}
+      <div className='todoCardItem__buttons'>
+        {children}
+      </div>
     </div>
   );
 }

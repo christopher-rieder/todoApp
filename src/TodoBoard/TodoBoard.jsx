@@ -8,7 +8,7 @@ import { connect } from 'react-redux';
 import TodoCardList from './TodoCardList';
 import TodoCardItem from './TodoCardItem';
 import {requestTodos} from './Actions';
-import {DeleteButton, DoneButton, InProgressButton} from '../SmallComponents/Buttons';
+import {EditButton, DeleteButton, DoneButton, InProgressButton} from '../SmallComponents/Buttons';
 
 // string literals defined for using in css style file
 const TODO_UI_STYLE = 'todo';
@@ -33,6 +33,7 @@ function TodoBoard ({todos, statuses, dispatch}) {
         {todos.filter(todo => todo.status === TODO)
           .map((todo, i) =>
             <TodoCardItem todoListStyle={TODO_UI_STYLE} todo={todo} key={todo.title + i} >
+              <EditButton />
               <InProgressButton />
               <DeleteButton />
             </TodoCardItem>)
@@ -42,6 +43,7 @@ function TodoBoard ({todos, statuses, dispatch}) {
         {todos.filter(todo => todo.status === INPROGRESS)
           .map((todo, i) =>
             <TodoCardItem todoListStyle={INPROGRESS_UI_STYLE} todo={todo} key={todo.title + i} >
+              <EditButton />
               <DoneButton />
               <DeleteButton />
             </TodoCardItem>)

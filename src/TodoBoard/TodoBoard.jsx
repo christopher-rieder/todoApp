@@ -24,7 +24,7 @@ const mapStateToProps = state => ({
 
 function TodoBoard ({todos, statuses, dispatch}) {
   const [TODO, INPROGRESS, DONE, DELETED] = statuses;
-  const [displayModal, setDisplayModal] = useState(false);
+  const [displayModal, setDisplayModal] = useState(true);
 
   useEffect(() => {
     dispatch(requestTodos());

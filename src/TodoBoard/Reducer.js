@@ -7,6 +7,12 @@ import {
   CHANGE_TODO_STATUS_FAILED
 } from './Actions';
 
+import {
+  ADD_TODO_PENDING,
+  ADD_TODO_SUCCESS,
+  ADD_TODO_FAILED
+} from '../TodoCreator/Actions';
+
 const initialState = {
   todos: [],
   todosPending: true,
@@ -27,6 +33,13 @@ const reducer = (state = initialState, action) => {
       return {...state,
         todos: state.todos.map(todo => todo.id === action.id ? {...todo, status: action.status} : todo)};
     case CHANGE_TODO_STATUS_FAILED:
+      return { ...state, todosError: action.payload, todosPending: false };
+    case ADD_TODO_PENDING:
+      return { ...state, todosPending: true };
+    case ADD_TODO_SUCCESS:
+      return {...state,
+        todos: state.todos.concat(action.payload)};
+    case ADD_TODO_FAILED:
       return { ...state, todosError: action.payload, todosPending: false };
     default: return state;
   }

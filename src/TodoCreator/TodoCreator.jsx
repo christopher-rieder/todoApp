@@ -3,17 +3,28 @@ import { connect } from 'react-redux';
 import TodoDeletedList from './TodoDeletedList';
 import TodoDeletedListItem from './TodoDeletedListItem';
 import {EditButton} from '../SmallComponents/Buttons';
+import {addTodo, newTodo} from './Actions';
 
 const mapStateToProps = state => ({
   todos: state.todoBoard.todos,
   statuses: ['To Do', 'In Progress', 'Done', 'Deleted'] // TODO: this needs to be adquired from the backend service
 });
 
-function TodoCreator ({todos, statuses}) {
-  const [,,, DELETED] = statuses;
+function TodoCreator ({todos, statuses, dispatch}) {
+  const [TODO, /* IN PROGRESS */ , /* DONE */, DELETED] = statuses;
 
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
+
+  function resetInputs () {
+    setTitle('');
+    setDescription('');
+  }
+
+  function btnAddTodo (evt) {
+    dispatch(addTodo(newTodo(title, description, TODO)));
+    resetInputs();
+  }
 
   return (
     <div className='todoCreate'>
@@ -22,7 +33,7 @@ function TodoCreator ({todos, statuses}) {
         <input className='todoCreateTitleInput' value={title} onChange={evt => setTitle(evt.target.value)} type='text' name='title' id='title' placeholder='Titulo/Alias' />
         <input className='todoCreateDescriptionInput' value={description} onChange={evt => setDescription(evt.target.value)} type='text' name='description' id='description' placeholder='Descripcion' />
       </div>
-      <button className='btn'>Agregar Tarea</button>
+      <button className='btn' onClick={btnAddTodo}>Agregar Tarea</button>
       <TodoDeletedList title='Deleted Tasks'>
         {todos.filter(todo => todo.status === DELETED)
           .map((todo, i) =>

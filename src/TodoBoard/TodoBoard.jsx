@@ -37,7 +37,7 @@ function TodoBoard ({todos, statuses, dispatch}) {
           {<TodoCreator />}
         </Modal>
       }
-      <TodoCardList title={TODO} >
+      <TodoCardList todoListStyle={TODO_UI_STYLE} title={TODO} >
         {todos.filter(todo => todo.status === TODO)
           .map((todo, i) =>
             <TodoCardItem todoListStyle={TODO_UI_STYLE} todo={todo} key={todo.title + i} >
@@ -47,7 +47,7 @@ function TodoBoard ({todos, statuses, dispatch}) {
             </TodoCardItem>)
         }
       </TodoCardList>
-      <TodoCardList title={INPROGRESS} >
+      <TodoCardList todoListStyle={INPROGRESS_UI_STYLE} title={INPROGRESS} >
         {todos.filter(todo => todo.status === INPROGRESS)
           .map((todo, i) =>
             <TodoCardItem todoListStyle={INPROGRESS_UI_STYLE} todo={todo} key={todo.title + i} >
@@ -57,7 +57,7 @@ function TodoBoard ({todos, statuses, dispatch}) {
             </TodoCardItem>)
         }
       </TodoCardList>
-      <TodoCardList title={DONE} >
+      <TodoCardList todoListStyle={DONE_UI_STYLE} title={DONE} >
         {todos.filter(todo => todo.status === DONE)
           .map((todo, i) =>
             <TodoCardItem todoListStyle={DONE_UI_STYLE} todo={todo} key={todo.title + i} >

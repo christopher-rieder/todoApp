@@ -1,9 +1,9 @@
 import React from 'react';
 
-function TodoCardList ({title, children}) {
+function TodoCardList ({title, todoListStyle, children}) {
   return (
     <div className='todoCardList'>
-      <p className='todoCardList__title'>{title}</p>
+      <p className={`todoCardList__title todoCardList__title--${todoListStyle}`}>{title}</p>
       {children}
     </div>
   );

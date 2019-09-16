@@ -1,6 +1,17 @@
 import React, { useEffect, useState } from 'react';
+import { connect } from 'react-redux';
+import TodoDeletedList from './TodoDeletedList';
+import TodoDeletedListItem from './TodoDeletedListItem';
+import {EditButton} from '../SmallComponents/Buttons';
 
-export default function TodoCreator (props) {
+const mapStateToProps = state => ({
+  todos: state.todoBoard.todos,
+  statuses: ['To Do', 'In Progress', 'Done', 'Deleted'] // TODO: this needs to be adquired from the backend service
+});
+
+function TodoCreator ({todos, statuses}) {
+  const [,,, DELETED] = statuses;
+
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
 
@@ -10,6 +21,16 @@ export default function TodoCreator (props) {
       <input value={title} onChange={evt => setTitle(evt.target.value)} type='text' name='title' id='title' placeholder='Titulo/Alias' />
       <input value={description} onChange={evt => setDescription(evt.target.value)} type='text' name='description' id='description' placeholder='Descripcion' />
       <button className='btn'>Create Task</button>
+      <TodoDeletedList title='Deleted Tasks'>
+        {todos.filter(todo => todo.status === DELETED)
+          .map((todo, i) =>
+            <TodoDeletedListItem todo={todo} key={todo.title + i} >
+              <EditButton />
+            </TodoDeletedListItem>)
+        }
+      </TodoDeletedList>
     </div>
   );
 }
+
+export default connect(mapStateToProps)(TodoCreator);

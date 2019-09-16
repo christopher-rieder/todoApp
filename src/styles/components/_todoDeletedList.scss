@@ -1,0 +1,9 @@
+.todoDeletedList {
+  padding: 1%;
+  
+  &__title {
+    text-transform: uppercase;
+    font-size: 2em;
+    margin-bottom: 1rem;
+  }
+}

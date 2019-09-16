@@ -1,0 +1,13 @@
+.todoDeletedListItem {
+  display: flex;
+  padding: 0 1rem;
+  margin: .5rem 0;
+  align-items: center;
+  background-color: whitesmoke;
+  height: 3rem;
+}
+
+.todoDeletedListItem svg{
+  margin-right: 2rem;
+  display: inline;
+}

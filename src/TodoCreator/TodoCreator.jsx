@@ -18,9 +18,11 @@ function TodoCreator ({todos, statuses}) {
   return (
     <div className='todoCreate'>
       <p className='todoCreateTitle'>New Task</p>
-      <input value={title} onChange={evt => setTitle(evt.target.value)} type='text' name='title' id='title' placeholder='Titulo/Alias' />
-      <input value={description} onChange={evt => setDescription(evt.target.value)} type='text' name='description' id='description' placeholder='Descripcion' />
-      <button className='btn'>Create Task</button>
+      <div className='inputs'>
+        <input className='todoCreateTitleInput' value={title} onChange={evt => setTitle(evt.target.value)} type='text' name='title' id='title' placeholder='Titulo/Alias' />
+        <input className='todoCreateDescriptionInput' value={description} onChange={evt => setDescription(evt.target.value)} type='text' name='description' id='description' placeholder='Descripcion' />
+      </div>
+      <button className='btn'>Agregar Tarea</button>
       <TodoDeletedList title='Deleted Tasks'>
         {todos.filter(todo => todo.status === DELETED)
           .map((todo, i) =>

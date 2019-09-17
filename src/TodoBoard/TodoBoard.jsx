@@ -16,9 +16,10 @@ import Modal from '../SmallComponents/Modal';
 const TODO_UI_STYLE = 'todo';
 const INPROGRESS_UI_STYLE = 'inprogress';
 const DONE_UI_STYLE = 'done';
-
 const mapStateToProps = state => ({
-  todos: state.todoBoard.todos,
+  todos: state.todoBoard.filter === ''
+    ? state.todoBoard.todos
+    : state.todoBoard.todos.filter(todo => todo.tags.includes(state.todoBoard.filter)),
   statuses: ['To Do', 'In Progress', 'Done', 'Deleted'] // TODO: this needs to be adquired from the backend service
 });
 

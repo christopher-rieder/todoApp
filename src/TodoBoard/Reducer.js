@@ -4,7 +4,8 @@ import {
   REQUEST_TODOS_FAILED,
   CHANGE_TODO_STATUS_PENDING,
   CHANGE_TODO_STATUS_SUCCESS,
-  CHANGE_TODO_STATUS_FAILED
+  CHANGE_TODO_STATUS_FAILED,
+  FILTER_BY_TAG
 } from './Actions';
 
 import {
@@ -16,7 +17,8 @@ import {
 const initialState = {
   todos: [],
   todosPending: true,
-  todosError: ''
+  todosError: '',
+  filter: ''
 };
 
 const reducer = (state = initialState, action) => {
@@ -41,6 +43,8 @@ const reducer = (state = initialState, action) => {
         todos: state.todos.concat(action.payload)};
     case ADD_TODO_FAILED:
       return { ...state, todosError: action.payload, todosPending: false };
+    case FILTER_BY_TAG:
+      return {...state, filter: action.payload};
     default: return state;
   }
 };

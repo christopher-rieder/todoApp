@@ -26,3 +26,6 @@ export const changeTodoStatus = (id, status) => dispatch => {
     .then(res => dispatch({type: CHANGE_TODO_STATUS_SUCCESS, id, status}))
     .catch(error => console.log(error) && dispatch({type: CHANGE_TODO_STATUS_FAILED, payload: error}));
 };
+
+export const FILTER_BY_TAG = 'FILTER_BY_TAG';
+export const filterByTag = (tag) => ({type: FILTER_BY_TAG, payload: tag});

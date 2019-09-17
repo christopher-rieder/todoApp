@@ -4,7 +4,16 @@ export const ADD_TODO_FAILED = 'ADD_TODO_FAILED';
 
 export const addTodo = (todo) => dispatch => {
   dispatch({type: ADD_TODO_PENDING});
-  window.setTimeout(() => dispatch({type: ADD_TODO_SUCCESS, payload: todo}), 200);
+  window.fetch(`http://localhost:3000/api/todos`, {
+    method: 'post',
+    headers: {
+      'Accept': 'application/json, text/plain, */*',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(todo)
+  }).then(res => res.json())
+    .then(res => dispatch({type: ADD_TODO_SUCCESS, payload: {id: res.id, ...todo}}))
+    .catch(error => dispatch({type: ADD_TODO_FAILED, payload: error}));
 };
 
 export const newTodo = (title, description, status, tags = '') => ({

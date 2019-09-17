@@ -20,6 +20,5 @@ export const newTodo = (title, description, status, tags = '') => ({
   title,
   description,
   status,
-  author: {name: 'Christopher Rieder'},
   tags: tags.split(',').map(tag => tag.trim())
 });

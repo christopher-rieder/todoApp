@@ -20,9 +20,12 @@
 .editButton:hover {fill: salmon;}
 
 .btn {
+  height: 24px;
+  width: auto;
   outline: none;
   border: none;
   background-color: $color-primary;
+  display: flex;
   align-items: center;
   padding: 10px 20px 10px 10px;
   border-radius: 100px;
@@ -43,9 +46,15 @@
   box-shadow: 2px 2px 20px rgba(#222, .55);
 }
 
-.fabAddButton {
+.bottomButtons {
+  height: fit-content;
   position: fixed;
   display: flex;
+  justify-content: space-between;
   bottom: 5%;
   right: 20%;
+}
+
+.bottomButtons > button {
+  margin: 0 1rem;
 }

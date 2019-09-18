@@ -29,3 +29,4 @@ export const changeTodoStatus = (_id, status) => dispatch => {
 
 export const FILTER_BY_TAG = 'FILTER_BY_TAG';
 export const filterByTag = (tag) => ({type: FILTER_BY_TAG, payload: tag});
+export const removeFilter = filterByTag('');

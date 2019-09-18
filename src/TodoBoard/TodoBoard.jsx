@@ -8,8 +8,8 @@ import { connect } from 'react-redux';
 import TodoCardList from './TodoCardList';
 import TodoCardItem from './TodoCardItem';
 import TodoCreator from '../TodoCreator/TodoCreator';
-import {requestTodos, changeTodoStatus} from './Actions';
-import {EditButton, DeleteButton, DoneButton, InProgressButton, FabAddButton} from '../SmallComponents/Buttons';
+import {requestTodos, changeTodoStatus, removeFilter} from './Actions';
+import {EditButton, DeleteButton, DoneButton, InProgressButton, FabAddButton, FabRemoveFiltersButton} from '../SmallComponents/Buttons';
 import Modal from '../SmallComponents/Modal';
 
 // string literals defined for using in css style file
@@ -20,10 +20,11 @@ const mapStateToProps = state => ({
   todos: state.todoBoard.filter === ''
     ? state.todoBoard.todos
     : state.todoBoard.todos.filter(todo => todo.tags.includes(state.todoBoard.filter)),
+  hasFilter: state.todoBoard.filter !== '',
   statuses: ['To Do', 'In Progress', 'Done', 'Deleted'] // TODO: this needs to be adquired from the backend service
 });
 
-function TodoBoard ({todos, statuses, dispatch}) {
+function TodoBoard ({todos, statuses, hasFilter, dispatch}) {
   const [TODO, INPROGRESS, DONE, DELETED] = statuses;
   const [displayModal, setDisplayModal] = useState(true);
 
@@ -66,7 +67,10 @@ function TodoBoard ({todos, statuses, dispatch}) {
             </TodoCardItem>)
         }
       </TodoCardList>
-      <FabAddButton onClick={() => setDisplayModal(true)} />
+      <div className='bottomButtons'>
+        { hasFilter && <FabRemoveFiltersButton onClick={() => dispatch(removeFilter)} /> }
+        <FabAddButton onClick={() => setDisplayModal(true)} />
+      </div>
     </div>
   );
 }

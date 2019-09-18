@@ -15,6 +15,7 @@ function TodoCreator ({todos, statuses, dispatch}) {
 
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
+  const [tags, setTags] = useState('');
 
   function resetInputs () {
     setTitle('');
@@ -22,7 +23,7 @@ function TodoCreator ({todos, statuses, dispatch}) {
   }
 
   function btnAddTodo (evt) {
-    dispatch(addTodo(newTodo(title, description, TODO)));
+    dispatch(addTodo(newTodo(title, description, TODO, tags)));
     resetInputs();
   }
 
@@ -32,6 +33,7 @@ function TodoCreator ({todos, statuses, dispatch}) {
       <div className='inputs'>
         <input className='todoCreateTitleInput' value={title} onChange={evt => setTitle(evt.target.value)} type='text' name='title' id='title' placeholder='Titulo/Alias' />
         <input className='todoCreateDescriptionInput' value={description} onChange={evt => setDescription(evt.target.value)} type='text' name='description' id='description' placeholder='Descripcion' />
+        <input className='todoCreateTagsInput' value={tags} onChange={evt => setTags(evt.target.value)} type='text' name='description' id='description' placeholder='Tags separados por coma' />
       </div>
       <button className='btn' onClick={btnAddTodo}>Agregar Tarea</button>
       <TodoDeletedList title='Deleted Tasks'>

@@ -11,12 +11,9 @@
   width: max-content;
 }
 
-.todoCreateTitleInput{
-  padding: .5rem;
-  margin: .5rem;
-}
-
-.todoCreateDescriptionInput{
+.todoCreateTitleInput,
+.todoCreateDescriptionInput,
+.todoCreateTagsInput{
   padding: .5rem;
   margin: .5rem;
 }

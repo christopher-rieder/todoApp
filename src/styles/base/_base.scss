@@ -12,6 +12,10 @@
   color: whitesmoke;
 }
 
+body {
+  background-color: $color-primary-ultra-light;
+}
+
 #root {
   margin: 0 auto;
   width: 75vw;

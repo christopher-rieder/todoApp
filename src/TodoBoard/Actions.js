@@ -7,7 +7,7 @@ export const CHANGE_TODO_STATUS_FAILED = 'CHANGE_TODO_STATUS_FAILED';
 
 export const requestTodos = () => dispatch => {
   dispatch({type: REQUEST_TODOS_PENDING});
-  window.fetch(`http://localhost:3000/api/todos`)
+  window.fetch(`https://topher-autocity-todo.herokuapp.com/api/todos`)
     .then(res => res.json())
     .then(res => dispatch({type: REQUEST_TODOS_SUCCESS, payload: res}))
     .catch(error => dispatch({type: REQUEST_TODOS_FAILED, payload: error}));
@@ -15,7 +15,7 @@ export const requestTodos = () => dispatch => {
 
 export const changeTodoStatus = (_id, status) => dispatch => {
   dispatch({type: CHANGE_TODO_STATUS_PENDING});
-  window.fetch(`http://localhost:3000/api/todos/${_id}`, {
+  window.fetch(`https://topher-autocity-todo.herokuapp.com/api/todos/${_id}`, {
     method: 'PATCH',
     headers: {
       'Accept': 'application/json, text/plain, */*',

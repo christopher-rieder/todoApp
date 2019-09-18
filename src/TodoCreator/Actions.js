@@ -4,7 +4,7 @@ export const ADD_TODO_FAILED = 'ADD_TODO_FAILED';
 
 export const addTodo = (todo) => dispatch => {
   dispatch({type: ADD_TODO_PENDING});
-  window.fetch(`http://localhost:3000/api/todos`, {
+  window.fetch(`https://topher-autocity-todo.herokuapp.com/api/todos`, {
     method: 'post',
     headers: {
       'Accept': 'application/json, text/plain, */*',

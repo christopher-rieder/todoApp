@@ -17,3 +17,17 @@
   padding: .5rem;
   margin: .5rem;
 }
+
+.inputs {
+  width: max-content;
+}
+
+.inputs * {
+  display: block;
+  width: 90%;
+  margin-right: auto;
+}
+
+.todoCreateDescriptionInput {
+  resize: none;
+}

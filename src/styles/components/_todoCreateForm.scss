@@ -19,13 +19,13 @@
 }
 
 .inputs {
+  display: flex;
+  flex-direction: column;
   width: max-content;
 }
 
-.inputs * {
-  display: block;
-  width: 90%;
-  margin-right: auto;
+.inputs .btn{
+  align-self: flex-end;
 }
 
 .todoCreateDescriptionInput {

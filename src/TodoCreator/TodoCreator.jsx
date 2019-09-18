@@ -34,8 +34,8 @@ function TodoCreator ({todos, statuses, dispatch}) {
         <input className='todoCreateTitleInput' value={title} onChange={evt => setTitle(evt.target.value)} type='text' name='title' id='title' placeholder='Titulo/Alias' />
         <textarea className='todoCreateDescriptionInput' value={description} onChange={evt => setDescription(evt.target.value)} name='description' id='description' placeholder='Descripcion' rows='5' cols='50' />
         <input className='todoCreateTagsInput' value={tags} onChange={evt => setTags(evt.target.value)} type='text' name='tags' id='tags' placeholder='Tags separados por coma' />
+        <button className='btn' onClick={btnAddTodo}>Agregar Tarea</button>
       </div>
-      <button className='btn' onClick={btnAddTodo}>Agregar Tarea</button>
       <TodoDeletedList title='Deleted Tasks'>
         {todos.filter(todo => todo.status === DELETED)
           .map((todo, i) =>

@@ -1,10 +1,14 @@
+import dotenv from 'dotenv';
+dotenv.config({path: '../.env'});
+const BACKEND_URI = process.env.BACKEND_URI;
+
 export const ADD_TODO_PENDING = 'ADD_TODO_PENDING';
 export const ADD_TODO_SUCCESS = 'ADD_TODO_SUCCESS';
 export const ADD_TODO_FAILED = 'ADD_TODO_FAILED';
 
 export const addTodo = (todo) => dispatch => {
   dispatch({type: ADD_TODO_PENDING});
-  window.fetch(`https://topher-autocity-todo.herokuapp.com/api/todos`, {
+  window.fetch(`${BACKEND_URI}/todos`, {
     method: 'post',
     headers: {
       'Accept': 'application/json, text/plain, */*',

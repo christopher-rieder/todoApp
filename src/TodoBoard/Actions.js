@@ -13,9 +13,9 @@ export const requestTodos = () => dispatch => {
     .catch(error => dispatch({type: REQUEST_TODOS_FAILED, payload: error}));
 };
 
-export const changeTodoStatus = (id, status) => dispatch => {
+export const changeTodoStatus = (_id, status) => dispatch => {
   dispatch({type: CHANGE_TODO_STATUS_PENDING});
-  window.fetch(`http://localhost:3000/api/todos/${id}`, {
+  window.fetch(`http://localhost:3000/api/todos/${_id}`, {
     method: 'PATCH',
     headers: {
       'Accept': 'application/json, text/plain, */*',
@@ -23,7 +23,7 @@ export const changeTodoStatus = (id, status) => dispatch => {
     },
     body: JSON.stringify({status})
   }).then(res => res.json())
-    .then(res => dispatch({type: CHANGE_TODO_STATUS_SUCCESS, id, status}))
+    .then(res => dispatch({type: CHANGE_TODO_STATUS_SUCCESS, _id, status}))
     .catch(error => console.log(error) && dispatch({type: CHANGE_TODO_STATUS_FAILED, payload: error}));
 };
 

@@ -43,8 +43,8 @@ function TodoBoard ({todos, statuses, dispatch}) {
           .map((todo, i) =>
             <TodoCardItem todoListStyle={TODO_UI_STYLE} todo={todo} key={todo.title + i} >
               <EditButton />
-              <InProgressButton onClick={() => dispatch(changeTodoStatus(todo.id, INPROGRESS))} />
-              <DeleteButton onClick={() => dispatch(changeTodoStatus(todo.id, DELETED))} />
+              <InProgressButton onClick={() => dispatch(changeTodoStatus(todo._id, INPROGRESS))} />
+              <DeleteButton onClick={() => dispatch(changeTodoStatus(todo._id, DELETED))} />
             </TodoCardItem>)
         }
       </TodoCardList>
@@ -53,8 +53,8 @@ function TodoBoard ({todos, statuses, dispatch}) {
           .map((todo, i) =>
             <TodoCardItem todoListStyle={INPROGRESS_UI_STYLE} todo={todo} key={todo.title + i} >
               <EditButton />
-              <DoneButton onClick={() => dispatch(changeTodoStatus(todo.id, DONE))} />
-              <DeleteButton onClick={() => dispatch(changeTodoStatus(todo.id, DELETED))} />
+              <DoneButton onClick={() => dispatch(changeTodoStatus(todo._id, DONE))} />
+              <DeleteButton onClick={() => dispatch(changeTodoStatus(todo._id, DELETED))} />
             </TodoCardItem>)
         }
       </TodoCardList>
@@ -62,7 +62,7 @@ function TodoBoard ({todos, statuses, dispatch}) {
         {todos.filter(todo => todo.status === DONE)
           .map((todo, i) =>
             <TodoCardItem todoListStyle={DONE_UI_STYLE} todo={todo} key={todo.title + i} >
-              <DeleteButton onClick={() => dispatch(changeTodoStatus(todo.id, DELETED))} />
+              <DeleteButton onClick={() => dispatch(changeTodoStatus(todo._id, DELETED))} />
             </TodoCardItem>)
         }
       </TodoCardList>

@@ -12,7 +12,7 @@ export const addTodo = (todo) => dispatch => {
     },
     body: JSON.stringify(todo)
   }).then(res => res.json())
-    .then(res => dispatch({type: ADD_TODO_SUCCESS, payload: {id: res.id, ...todo}}))
+    .then(res => dispatch({type: ADD_TODO_SUCCESS, payload: {_id: res._id, ...todo}}))
     .catch(error => dispatch({type: ADD_TODO_FAILED, payload: error}));
 };
 

@@ -33,7 +33,7 @@ const reducer = (state = initialState, action) => {
       return { ...state, todosPending: true };
     case CHANGE_TODO_STATUS_SUCCESS:
       return {...state,
-        todos: state.todos.map(todo => todo.id === action.id ? {...todo, status: action.status} : todo)};
+        todos: state.todos.map(todo => todo._id === action._id ? {...todo, status: action.status} : todo)};
     case CHANGE_TODO_STATUS_FAILED:
       return { ...state, todosError: action.payload, todosPending: false };
     case ADD_TODO_PENDING:

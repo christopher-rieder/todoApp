@@ -42,11 +42,16 @@ function TodoBoard ({todos, statuses, hasFilter, dispatch}) {
     };
   }
 
+  function cleanEditState () {
+    setEditTodo(false);
+    setTodo({});
+  }
+
   return (
     <div className='todoBoard'>
       {
         displayModal && <Modal displayModal={displayModal} setDisplayModal={setDisplayModal}>
-          {<TodoCreator todo={todo} editTodo={editTodo} />}
+          {<TodoCreator todo={todo} editTodo={editTodo} cleanEditState={cleanEditState} />}
         </Modal>
       }
       <TodoCardList todoListStyle={TODO_UI_STYLE} title={TODO} >

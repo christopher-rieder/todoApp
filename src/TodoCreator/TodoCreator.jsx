@@ -9,7 +9,7 @@ const mapStateToProps = state => ({
   statuses: ['To Do', 'In Progress', 'Done', 'Deleted'] // TODO: this needs to be adquired from the backend service
 });
 
-function TodoCreator ({todos, statuses, dispatch, todo, editTodo}) {
+function TodoCreator ({todos, statuses, dispatch, todo, editTodo, cleanEditState}) {
   const [TODO, /* IN PROGRESS */ , /* DONE */, DELETED] = statuses;
 
   const [title, setTitle] = useState('');
@@ -37,6 +37,7 @@ function TodoCreator ({todos, statuses, dispatch, todo, editTodo}) {
 
   function btnModifyTodo (evt) {
     dispatch(modifyTodo(todo._id, {description, tags: tags.split(',').map(tag => tag.trim())}));
+    cleanEditState();
     resetInputs();
   }
 

@@ -2,8 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import TodoDeletedList from './TodoDeletedList';
 import TodoDeletedListItem from './TodoDeletedListItem';
-import {EditButton} from '../SmallComponents/Buttons';
-import {addTodo, newTodo} from './Actions';
+import {addTodo, newTodo, modifyTodo} from './Actions';
 
 const mapStateToProps = state => ({
   todos: state.todoBoard.todos,
@@ -28,10 +27,16 @@ function TodoCreator ({todos, statuses, dispatch, todo, editTodo}) {
   function resetInputs () {
     setTitle('');
     setDescription('');
+    setTags('');
   }
 
   function btnAddTodo (evt) {
     dispatch(addTodo(newTodo(title, description, TODO, tags)));
+    resetInputs();
+  }
+
+  function btnModifyTodo (evt) {
+    dispatch(modifyTodo(todo._id, {description, tags: tags.split(',').map(tag => tag.trim())}));
     resetInputs();
   }
 
@@ -45,14 +50,15 @@ function TodoCreator ({todos, statuses, dispatch, todo, editTodo}) {
         <input className='todoCreateTitleInput' value={title} onChange={evt => setTitle(evt.target.value)} type='text' name='title' id='title' placeholder='Titulo/Alias' />
         <textarea className='todoCreateDescriptionInput' value={description} onChange={evt => setDescription(evt.target.value)} name='description' id='description' placeholder='Descripcion' rows='5' cols='50' />
         <input className='todoCreateTagsInput' value={tags} onChange={evt => setTags(evt.target.value)} type='text' name='tags' id='tags' placeholder='Tags separados por coma' />
-        <button className='btn' onClick={btnAddTodo}>Agregar Tarea</button>
+        {editTodo
+          ? <button className='btn' onClick={btnModifyTodo}>Modificar Tarea</button>
+          : <button className='btn' onClick={btnAddTodo}>Agregar Tarea</button>
+        }
       </div>
       <TodoDeletedList title='Deleted Tasks'>
         {todos.filter(todo => todo.status === DELETED)
           .map((todo, i) =>
-            <TodoDeletedListItem todo={todo} key={todo.title + i} >
-              <EditButton />
-            </TodoDeletedListItem>)
+            <TodoDeletedListItem todo={todo} key={todo.title + i} />)
         }
       </TodoDeletedList>
     </div>

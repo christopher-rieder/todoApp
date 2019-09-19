@@ -5,6 +5,10 @@
   align-items: center;
   background-color: whitesmoke;
   height: 3rem;
+
+  &__title {
+    margin-right: 1rem;
+  }
 }
 
 .todoDeletedListItem svg{

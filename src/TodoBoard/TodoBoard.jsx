@@ -27,23 +27,33 @@ const mapStateToProps = state => ({
 function TodoBoard ({todos, statuses, hasFilter, dispatch}) {
   const [TODO, INPROGRESS, DONE, DELETED] = statuses;
   const [displayModal, setDisplayModal] = useState(false);
+  const [editTodo, setEditTodo] = useState(false);
+  const [todo, setTodo] = useState({});
 
   useEffect(() => {
     dispatch(requestTodos());
   }, []);
 
+  function onClickEdit (todo) {
+    return event => {
+      setEditTodo(true);
+      setTodo(todo);
+      setDisplayModal(true);
+    };
+  }
+
   return (
     <div className='todoBoard'>
       {
         displayModal && <Modal displayModal={displayModal} setDisplayModal={setDisplayModal}>
-          {<TodoCreator />}
+          {<TodoCreator todo={todo} editTodo={editTodo} />}
         </Modal>
       }
       <TodoCardList todoListStyle={TODO_UI_STYLE} title={TODO} >
         {todos.filter(todo => todo.status === TODO)
           .map((todo, i) =>
             <TodoCardItem todoListStyle={TODO_UI_STYLE} todo={todo} key={todo.title + i} >
-              <EditButton />
+              <EditButton onClick={onClickEdit(todo)} />
               <InProgressButton onClick={() => dispatch(changeTodoStatus(todo._id, INPROGRESS))} />
               <DeleteButton onClick={() => dispatch(changeTodoStatus(todo._id, DELETED))} />
             </TodoCardItem>)
@@ -53,7 +63,7 @@ function TodoBoard ({todos, statuses, hasFilter, dispatch}) {
         {todos.filter(todo => todo.status === INPROGRESS)
           .map((todo, i) =>
             <TodoCardItem todoListStyle={INPROGRESS_UI_STYLE} todo={todo} key={todo.title + i} >
-              <EditButton />
+              <EditButton onClick={onClickEdit(todo)} />
               <DoneButton onClick={() => dispatch(changeTodoStatus(todo._id, DONE))} />
               <DeleteButton onClick={() => dispatch(changeTodoStatus(todo._id, DELETED))} />
             </TodoCardItem>)

@@ -10,12 +10,20 @@ const mapStateToProps = state => ({
   statuses: ['To Do', 'In Progress', 'Done', 'Deleted'] // TODO: this needs to be adquired from the backend service
 });
 
-function TodoCreator ({todos, statuses, dispatch}) {
+function TodoCreator ({todos, statuses, dispatch, todo, editTodo}) {
   const [TODO, /* IN PROGRESS */ , /* DONE */, DELETED] = statuses;
 
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [tags, setTags] = useState('');
+
+  useEffect(() => {
+    if (editTodo) { // modifying existing todo
+      setTitle(todo.title);
+      setDescription(todo.description);
+      setTags(todo.tags.join(', '));
+    }
+  }, []);
 
   function resetInputs () {
     setTitle('');
@@ -29,7 +37,10 @@ function TodoCreator ({todos, statuses, dispatch}) {
 
   return (
     <div className='todoCreate'>
-      <p className='todoCreateTitle'>New Task</p>
+      {editTodo
+        ? <p className='todoCreateTitle'>Modifying existing task</p>
+        : <p className='todoCreateTitle'>New Task</p>
+      }
       <div className='inputs'>
         <input className='todoCreateTitleInput' value={title} onChange={evt => setTitle(evt.target.value)} type='text' name='title' id='title' placeholder='Titulo/Alias' />
         <textarea className='todoCreateDescriptionInput' value={description} onChange={evt => setDescription(evt.target.value)} name='description' id='description' placeholder='Descripcion' rows='5' cols='50' />

@@ -36,7 +36,7 @@ function TodoCreator ({todos, statuses, dispatch, todo, editTodo, cleanEditState
   }
 
   function btnModifyTodo (evt) {
-    dispatch(modifyTodo(todo._id, {title, description, tags: tags.split(',').map(tag => tag.trim())}));
+    dispatch(modifyTodo({title, description, tags: tags.split(',').map(tag => tag.trim())}, todo._id));
     cleanEditState();
     resetInputs();
   }

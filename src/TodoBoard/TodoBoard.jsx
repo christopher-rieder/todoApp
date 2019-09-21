@@ -59,8 +59,8 @@ function TodoBoard ({todos, statuses, hasFilter, dispatch}) {
           .map((todo, i) =>
             <TodoCardItem todoListStyle={TODO_UI_STYLE} todo={todo} key={todo.title + i} >
               <EditButton onClick={onClickEdit(todo)} />
-              <InProgressButton onClick={() => dispatch(changeTodoStatus(todo._id, INPROGRESS))} />
-              <DeleteButton onClick={() => dispatch(changeTodoStatus(todo._id, DELETED))} />
+              <InProgressButton onClick={() => dispatch(changeTodoStatus({status: INPROGRESS}, todo._id))} />
+              <DeleteButton onClick={() => dispatch(changeTodoStatus({status: DELETED}, todo._id))} />
             </TodoCardItem>)
         }
       </TodoCardList>
@@ -69,8 +69,8 @@ function TodoBoard ({todos, statuses, hasFilter, dispatch}) {
           .map((todo, i) =>
             <TodoCardItem todoListStyle={INPROGRESS_UI_STYLE} todo={todo} key={todo.title + i} >
               <EditButton onClick={onClickEdit(todo)} />
-              <DoneButton onClick={() => dispatch(changeTodoStatus(todo._id, DONE))} />
-              <DeleteButton onClick={() => dispatch(changeTodoStatus(todo._id, DELETED))} />
+              <DoneButton onClick={() => dispatch(changeTodoStatus({status: DONE}, todo._id))} />
+              <DeleteButton onClick={() => dispatch(changeTodoStatus({status: DELETED}, todo._id))} />
             </TodoCardItem>)
         }
       </TodoCardList>
@@ -78,7 +78,7 @@ function TodoBoard ({todos, statuses, hasFilter, dispatch}) {
         {todos.filter(todo => todo.status === DONE)
           .map((todo, i) =>
             <TodoCardItem todoListStyle={DONE_UI_STYLE} todo={todo} key={todo.title + i} >
-              <DeleteButton onClick={() => dispatch(changeTodoStatus(todo._id, DELETED))} />
+              <DeleteButton onClick={() => dispatch(changeTodoStatus({status: DELETED}, todo._id))} />
             </TodoCardItem>)
         }
       </TodoCardList>

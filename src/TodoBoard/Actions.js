@@ -1,35 +1,10 @@
-import dotenv from 'dotenv';
-dotenv.config({path: '../.env'});
-const BACKEND_URI = process.env.BACKEND_URI;
+import {asyncActionTypeCreator, asyncApiCall, TODOS_RESOURCE} from '../api/backend';
 
-export const REQUEST_TODOS_PENDING = 'REQUEST_TODOS_PENDING';
-export const REQUEST_TODOS_SUCCESS = 'REQUEST_TODOS_SUCCESS';
-export const REQUEST_TODOS_FAILED = 'REQUEST_TODOS_FAILED';
-export const CHANGE_TODO_STATUS_PENDING = 'CHANGE_TODO_STATUS_PENDING';
-export const CHANGE_TODO_STATUS_SUCCESS = 'CHANGE_TODO_STATUS_SUCCESS';
-export const CHANGE_TODO_STATUS_FAILED = 'CHANGE_TODO_STATUS_FAILED';
+export const REQUEST_TODOS = asyncActionTypeCreator('REQUEST_TODOS');
+export const requestTodos = asyncApiCall(REQUEST_TODOS, TODOS_RESOURCE, 'get');
 
-export const requestTodos = () => dispatch => {
-  dispatch({type: REQUEST_TODOS_PENDING});
-  window.fetch(`${BACKEND_URI}/todos`)
-    .then(res => res.json())
-    .then(res => dispatch({type: REQUEST_TODOS_SUCCESS, payload: res}))
-    .catch(error => dispatch({type: REQUEST_TODOS_FAILED, payload: error}));
-};
-
-export const changeTodoStatus = (_id, status) => dispatch => {
-  dispatch({type: CHANGE_TODO_STATUS_PENDING});
-  window.fetch(`${BACKEND_URI}/todos/${_id}`, {
-    method: 'PATCH',
-    headers: {
-      'Accept': 'application/json, text/plain, */*',
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({status})
-  }).then(res => res.json())
-    .then(res => dispatch({type: CHANGE_TODO_STATUS_SUCCESS, _id, status}))
-    .catch(error => console.log(error) && dispatch({type: CHANGE_TODO_STATUS_FAILED, payload: error}));
-};
+export const CHANGE_TODO_STATUS = asyncActionTypeCreator('CHANGE_TODO_STATUS');
+export const changeTodoStatus = asyncApiCall(CHANGE_TODO_STATUS, TODOS_RESOURCE, 'PATCH');
 
 export const FILTER_BY_TAG = 'FILTER_BY_TAG';
 export const filterByTag = (tag) => ({type: FILTER_BY_TAG, payload: tag});

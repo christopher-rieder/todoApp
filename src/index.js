@@ -5,12 +5,12 @@ import { createStore, applyMiddleware, combineReducers, compose } from 'redux';
 import thunkMiddleware from 'redux-thunk';
 import App from './App';
 import './styles/main.scss';
-import todoCreatorReducer from './TodoCreator/Reducer';
+import apiReducer from './api/Reducer';
 import todoBoardReducer from './TodoBoard/Reducer';
 
 // const logger = createLogger();
 const rootReducer = combineReducers({
-  todoCreator: todoCreatorReducer,
+  apiReducer: apiReducer,
   todoBoard: todoBoardReducer
 });
 

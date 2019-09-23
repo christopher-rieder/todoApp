@@ -3,12 +3,12 @@
 // the second column is projects in progress (in progress...)
 // and the third column is projects completed (done...)
 
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import TodoCardList from './TodoCardList';
 import TodoCardItem from './TodoCardItem';
 import TodoCreator from '../TodoCreator/TodoCreator';
-import {requestTodos, changeTodoStatus, removeFilter} from './Actions';
+import {changeTodoStatus, removeFilter} from './Actions';
 import {EditButton, DeleteButton, DoneButton, InProgressButton, FabAddButton, FabRemoveFiltersButton} from '../SmallComponents/Buttons';
 import Modal from '../SmallComponents/Modal';
 
@@ -16,6 +16,7 @@ import Modal from '../SmallComponents/Modal';
 const TODO_UI_STYLE = 'todo';
 const INPROGRESS_UI_STYLE = 'inprogress';
 const DONE_UI_STYLE = 'done';
+
 const mapStateToProps = state => ({
   todos: state.todoBoard.filter === ''
     ? state.todoBoard.todos
@@ -29,10 +30,6 @@ function TodoBoard ({todos, statuses, hasFilter, dispatch}) {
   const [displayModal, setDisplayModal] = useState(false);
   const [editTodo, setEditTodo] = useState(false);
   const [todo, setTodo] = useState({});
-
-  useEffect(() => {
-    dispatch(requestTodos());
-  }, []);
 
   function onClickEdit (todo) {
     return event => {

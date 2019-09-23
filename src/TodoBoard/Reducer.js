@@ -17,7 +17,7 @@ const initialState = {
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case REQUEST_TODOS.SUCCESS:
-      return { ...state, todos: action.payload, todosPending: false };
+      return { ...state, todos: action.payload };
     case CHANGE_TODO_STATUS.SUCCESS:
       return {...state,
         todos: state.todos.map(todo => todo._id === action.payload._id ? {...todo, status: action.payload.status} : todo)};
